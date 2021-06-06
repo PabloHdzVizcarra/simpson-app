@@ -1,7 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Mate+SC&display=swap');
 body {
   margin: 0;
-  font-family: 'Mate SC', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
