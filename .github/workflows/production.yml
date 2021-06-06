@@ -28,6 +28,12 @@ jobs:
       - name: -- Install dependencies
         run: npm install
 
+      - name: -- Run Lint
+        run: npm run lint
+
+      - name: -- Run Build
+        run: npm run build
+
       - name: -- Deploy to Netlify
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
