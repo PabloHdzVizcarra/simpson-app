@@ -1,19 +1,19 @@
 import SimpsonAPI from "../simpsonAPI";
-import { Simpson } from "../../types/Simpson";
+import { Character } from "../../types/Character";
 
 interface ICallAPI {
-  get(): Promise<Simpson[] | void>
+  get(): Promise<Character[] | void>
 }
 
 class CallAPI implements ICallAPI{
-  protected simpsonService: SimpsonAPI;
+  protected serviceAPI: SimpsonAPI;
 
   constructor(simpsonService: SimpsonAPI) {
-    this.simpsonService = simpsonService;
+    this.serviceAPI = simpsonService;
   }
 
-  public async get(): Promise< Simpson[] | void> {
-    return this.simpsonService.get();
+  public async get(): Promise<Character[] | void> {
+    return this.serviceAPI.get();
   }
 
 }

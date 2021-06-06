@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { Simpson } from "../../types/Simpson";
+import { Character } from "../../types/Character";
+import { getSimpsonCharacter } from "../../use_cases/getSimpsonCharacter";
+import { CallAPI } from "../../service/call_api/CallAPI";
+import SimpsonAPI from "../../service/simpsonAPI";
 
 function Main() {
-  const [data, setData] = useState<Simpson>();
+  const [data, setData] = useState<Character>();
+  const getCharacter = new getSimpsonCharacter(new CallAPI(new SimpsonAPI()));
 
   useEffect(() => {
-
-  }, [])
+    getCharacter.character()
+        .then(data => setData(data))
+  }, [getCharacter]);
 
 
   return (
