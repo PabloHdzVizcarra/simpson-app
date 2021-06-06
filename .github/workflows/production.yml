@@ -1,0 +1,39 @@
+name: production workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: -- Check out Git repository
+        uses: actions/checkout@v1
+
+      - name: -- Setup Node JS
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+
+      - name: -- Get current branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GTIHUB_REF#refs/heads/})"
+        id: curr_branch
+
+      - name: -- Install Netlify CLI
+        run: npm install netlify-cli -g
+
+      - name: -- Install dependencies
+        run: npm install
+
+      - name: -- Deploy to Netlify
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          RUN_ID: ${{ github.run_id }}
+          CURR_BRANCH: ${{ steps.cur_branch.outputs.branch }}
+        shell: bash
+        run: netlify deploy --dir=dist --prod --auth $NETLIFY_AUTH_TOKEN --message="GitHub action deploy $RUN_ID on $CURR_BRANCH"
+
