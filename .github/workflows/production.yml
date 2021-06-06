@@ -41,5 +41,5 @@ jobs:
           RUN_ID: ${{ github.run_id }}
           CURR_BRANCH: ${{ steps.cur_branch.outputs.branch }}
         shell: bash
-        run: netlify deploy --dir=dist --prod --auth $NETLIFY_AUTH_TOKEN --message="GitHub action deploy $RUN_ID on $CURR_BRANCH"
+        run: netlify deploy --dir=build --prod --auth $NETLIFY_AUTH_TOKEN --message="GitHub action deploy $RUN_ID on $CURR_BRANCH"
 
