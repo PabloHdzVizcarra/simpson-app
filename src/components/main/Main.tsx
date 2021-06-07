@@ -14,7 +14,7 @@ function Main() {
   }, [])
 
   return (
-      <main className="container d-flex justify-content-center">
+      <main className="container d-flex justify-content-center flex-column">
         {character
             ? <CharacterComponent
                 key={character.character.length}
@@ -24,6 +24,9 @@ function Main() {
             />
             : null
         }
+        <div className="d-grip mx-auto pb-4">
+          <button className="btn btn-primary d-flex">Change</button>
+        </div>
       </main>
   );
 }
